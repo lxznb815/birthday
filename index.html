@@ -335,6 +335,35 @@ videoContent.addEventListener('click', function(e) {
     e.stopPropagation();
 });
 
+<script>
+    // 获取元素
+    var modal = document.getElementById("videoModal");
+    var btn = document.getElementById("videoBtn");
+    var span = document.getElementsByClassName("close-btn")[0];
+    var video = modal.querySelector("video");
+
+    // 当点击按钮时，显示弹窗
+    btn.onclick = function() {
+        modal.style.display = "block";
+        video.play(); // 自动播放
+    }
+
+    // 当点击 "x" 关闭按钮时，隐藏弹窗
+    span.onclick = function() {
+        modal.style.display = "none";
+        video.pause(); // 暂停视频
+        video.currentTime = 0; // 重置进度
+    }
+
+    // 当点击弹窗背景（视频外面）时，也关闭
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            video.pause();
+            video.currentTime = 0;
+        }
+    }
+</script>
     </script>
     <!-- 视频按钮 -->
     <button id="videoBtn" class="video-button">🎥 点击看祝福视频</button>
